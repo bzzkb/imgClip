@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>控制层</title>
+        <script src="custom_clip.js"> </script>
+        <script>
+            $_$(function(){
+                ATONG.util.ImgClip({
+                    target:ATONG.$('targetImg'),//你要进行裁剪的图片的引用
+                    toScale:true,//是否开启比例
+                    fade : true,//是否开启动画
+                    minWidth : 50,
+                    minHeight:100,
+                    aspectRatio :1/2,
+                    parent :ATONG.$('hello'),//指定插入的父节点的引用，默认是body
+                    onChange:showPreview //选区位置改变的时候 的回调函数，接受一个参数，这个参数返回选区框的位置信息
+                });
+                
+                function showPreview ( coords ) {//接收一个参数，这个参数返回选区框的宽、高、top、left，分别是width/height/left/top,在ie里面，如果被除数为0，那么就会报错的
+                        if (coords.width==0)  ATONG.$('previewImg').style.width=0
+                        else ATONG.$('previewImg').style.width = 150/coords.width*400+'px'
+                        if (coords.height==0)  ATONG.$('previewImg').style.height=0
+                        else ATONG.$('previewImg').style.height =150/coords.height*400+'px'
+                        if (coords.left==0||coords.width==0)  ATONG.$('previewImg').style.left=0
+                        else ATONG.$('previewImg').style.left = -150/coords.width*coords.left+'px';
+                        if (coords.top==0||coords.height==0)  ATONG.$('previewImg').style.top=0
+                        else ATONG.$('previewImg').style.top = -150/coords.height*coords.top+'px';
+                        ATONG.$('x1').value = coords.left;
+                        ATONG.$('y1').value = coords.top;
+                        ATONG.$('w').value = coords.width;
+                        ATONG.$('h').value = coords.height;
+                }
+            });
+        </script>
+    </head>
+
+    <body>
+        <div style="top:100px;left:202px;width:200px;height:100px;"><div id="hello" style="width:200px;height:200px;background:red;position:absolute;top:600px;left:500px;">  </div></div>
+        <img id="targetImg" src="images/muchFeel.jpg" style="width:400px;height:400px;position:absolute;left:200px;top:100px;">
+        <!--                <div id="wrapper" style="width:300px;height:300px;left:200px;top:200px;"> 获取图片对象的位置、宽高
+                            <img id="img2" src="css/kaola.jpg" style="width:300px;height:300px;" />
+                            <img id="imgClip" class="alpha-img" style="width: 300px; height: 300px;" src="css/kaola.jpg">
+                            <div id="demo" >
+                                <div id="div1">这里要加四个边框、8个句柄
+                                    <i class="custom-border border-t"></i>
+                                    <i class="custom-border border-r"></i>
+                                    <i class="custom-border border-b"></i>
+                                    <i class="custom-border border-l"></i>
+                                    <i class="rb hand"></i>
+                                    <i class="lt hand"></i>
+                                    <i class="lb hand"></i>
+                                    <i class="rt hand"></i>
+                                </div>
+                            </div>
+                        </div>-->
+
+        <div id="preview" style="position:absolute;top:100px;left:692px;width:150px;height:150px;overflow: hidden;border-radius:4px 4px;">
+            <img id="previewImg" src="images/muchFeel.jpg" style="position: absolute;top:0;left:0;" />
+        </div>
+
+        <table style="margin-top: 1em;position:absolute;left:689px;top:281px;">
+            <thead>
+                <tr>
+                    <th colspan="2" style="font-size: 110%; font-weight: bold; text-align: left; padding-left: 0.1em;">
+                        Coordinates
+                    </th>
+                    <th colspan="2" style="font-size: 110%; font-weight: bold; text-align: left; padding-left: 0.1em;">
+                        Dimensions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="width: 10%;"><b>X<sub>1</sub>:</b></td>
+                    <td style="width: 30%;"><input type="text" id="x1" value="-"></td>
+                    <td style="width: 20%;"><b>Width:</b></td>
+                    <td><input type="text" value="-" id="w"></td>
+                </tr>
+                <tr>
+                    <td><b>Y<sub>1</sub>:</b></td>
+                    <td><input type="text" id="y1" value="-"></td>
+                    <td><b>Height:</b></td>
+                    <td><input type="text" id="h" value="-"></td>
+                </tr>
+
+            </tbody>
+            
+            
+        </table>
+        
+    </body>
+</html>
+
+
+
+
+
+
+
+
