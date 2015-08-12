@@ -1,7 +1,7 @@
 /**
  *@function 
  *@description 图片裁剪 
- *@author $_EYOUMBR_COPYRIGHT_$ (xiezhaotong,539882035@qq.com)
+ *@author Sunrise
  *@param { object HTMLImageElement } target , 图片对象引用，必选，亲，没有会报错的，下面的参数都是可选
  *@param { boolean } toScale ,是否使用比例，默认false
  *@param { boolean } fade , 是否开启动画 ,默认true
